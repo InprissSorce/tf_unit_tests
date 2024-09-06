@@ -1,0 +1,53 @@
+# Do not alter the two lines below.
+import euclid
+from colors import *
+import time
+
+# Now we create the page on which pens will draw.
+# Set its size to 400 by 400, set its colors to PALETURQUOISE,
+# set the tracer to 0 (increase the value of the tracer to increase the animation speed).
+# Do not delete this line, but change if you like.
+euclid.createPage(size = (400, 400), color = PALETURQUOISE, tracer = 0)
+
+# Next we create a pen name logos.
+# Its color is VIOLETRED, it begins at position (160, 240)
+# and direction 0 (which is directly right).
+# The delay of 6 slows it down a bit; decrease delay to increase animation speed.
+# Do not  delete, but change if you like.
+# You may also create additional pens.
+logos = euclid.Pen(color = VIOLETRED, position = (160, 240), direction = 0, delay = 6)
+
+# Now we create functions that will draw with our pen.
+# My example draws an equilateral triangle.
+def triangle(s, x, y):
+  # s is the side length of the triangle.
+  # (x, y) are the coordinates of its lower left corner.
+  logos.up() # pick up pen so it wont draw when we move
+  logos.goto(x, y) # position logos at (x, y)
+  logos.down() # put pen back down so it will now draw
+  for i in range(3): # range(3) because 3 sides
+     logos.forward(s) # draw a side 
+     logos.turn(120)
+
+# Write your functions here.
+
+
+
+# Call the triangle function.
+triangle(50, 100, 80)
+time.sleep(3) # pause for 3 seconds
+euclid.clear() # clear the screen
+
+# Call each of your functions here.
+# Place a short pause between each.
+# time.sleep(3) will pause for 3 seconds,
+# which seems reasonable.
+# After each pause, do euclid.clear()
+# to clear the screen.
+
+
+
+# Now finish any as yet incomplete parts of the animation
+# and keep the window open.
+euclid.finish()
+euclid.wait()
