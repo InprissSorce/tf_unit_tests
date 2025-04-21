@@ -1,5 +1,5 @@
 # Name: Selection Unit Test
-# Time: 7.5.2023
+# Time: 4.21.2025 @ 8:57 am
 
 # Helper Functions
 import operator as op
@@ -193,7 +193,11 @@ class UnitTest():
 # and the expected return for that argument.
 pw_def_tc = [(-144, 141), (-1, 2), (0, 3), (1, 1), (144, 67.5)]
 abs_val_tc = [(-12, 12), (12, 12), (0, 0)]
-implies_tc = [((True, True), True), ((True, False), False), ((False, True), True), ((False, False), True)]
+NOR_tc = [((True, False), False), ((False, False), True)]
+NAND_tc = [((True, True), False), ((False, True), True)]
+XOR_tc = [((False, True), True), ((False, False), False)]
+XNOR_tc = [((True, True), True), ((True, False), False)]
+implies_tc = [((True, False), False), ((False, True), True)]
 neither_nor_tc = [((True, True), False), ((True, False), False), ((False, True), False), ((False, False), True)]
 signs_tc = [(-12, -1), (3, 1), (0, 0)]
 sign_count_tc = [([1], (0, 0, 1)), ([], (0, 0, 0)), ([-1], (1, 0, 0)), ([12, 28, 0, 0, -12, -28, 0], (2, 3, 2))]
@@ -221,6 +225,10 @@ pyth_trip_tc = [(200, 127), (1000, 881)]
 # Test types: eq_comp, is_comp, eq_not_is, elems_comp
 pw_def_unit = Unit(pw_def, "piecewise defined function", pw_def_tc, False, False, eq_comp)
 abs_val_unit = Unit(abs_val, "absolute value", abs_val_tc, False, False, eq_comp)
+NOR_unit = Unit(NOR, "NOR", NOR_tc, True, False, eq_comp)
+NAND_unit = Unit(NAND, "NAND", NAND_tc, True, False, eq_comp)
+XOR_unit = Unit(XOR, "XOR", XOR_tc, True, False, eq_comp)
+XNOR_unit = Unit(XNOR, "XNOR", XNOR_tc, True, False, eq_comp)
 implies_unit = Unit(implies, "implies", implies_tc, True, False, eq_comp)
 neither_nor_unit = Unit(neither_nor, "neither nor", neither_nor_tc, True, False, eq_comp)
 sign_unit = Unit(sign, "sign function", signs_tc, False, False, eq_comp)
@@ -244,7 +252,7 @@ add_fracs_unit = Unit(add_fracs, "add fractions", add_fracs_tc, True, False, eq_
 pyth_trip_unit = Unit(pyth_trip, "pythagorean triples", pyth_trip_tc, False, False, eq_comp)
 
 # Unit Test List
-units = [pw_def_unit, abs_val_unit, implies_unit, neither_nor_unit, sign_unit, sign_count_unit, letter_grade_unit,
+units = [pw_def_unit, abs_val_unit, NOR_unit, NAND_unit, XOR_unit, XNOR_unit, implies_unit, sign_unit, sign_count_unit, letter_grade_unit,
          letter_grade_plus_unit, is_tri_unit, order_three_unit, extrema_unit, tri_test_unit, digit_count_unit, leap_year_unit,
          sq_rt_unit, is_prime_unit, hailstone_unit, LCM_unit, GCF_unit, reduce_frac_unit, add_fracs_unit, pyth_trip_unit]
 
