@@ -1,5 +1,5 @@
 # Name: Way of the Func Unit Test
-# Time: 8.30.2023 @ 2:16 pm
+# Time: 4.21.2025 @ 7:42 am
 
 # Helper Functions
 import operator as op
@@ -210,6 +210,7 @@ hg_grade_tc = [((77, 72, 99), 79.4),
                ((92, 96, 81), 91.40000000000002)]
 grade_needed_tc = [((90, 72, 92), 121.99999999999996),
                    ((80, 72, 92), 71.99999999999996)]
+reference_angle_tc = [(360, 0), (540, 180), (-1072, 8)]
 linear_eq_tc = [((-3.2, -15, 4), -27.8),
                 ((0, 8.5, 99), 8.5)]
 cube_rt_tc = [(0, 0.0),
@@ -246,8 +247,9 @@ f_to_c_unit = Unit(f_to_c, "Fahrneheit to Celcius", f_to_c_tc, False, False, app
 c_to_f_unit = Unit(c_to_f, "Celcius to Fahrenheit", c_to_f_tc, False, False, approx_eq)
 hg_grade_unit = Unit(hg_grade, "honors geo grade", hg_grade_tc, True, False, approx_eq)
 grade_needed_unit = Unit(grade_needed, "grade needed on final", grade_needed_tc, True, False, approx_eq)
+reference_angle_unit = Unit(reference_angle, "reference angle", reference_angle_tc, False, False, eq_comp)
 linear_eq_unit = Unit(linear_eq, "linear equation", linear_eq_tc, True, False, eq_comp)
-cube_rt_unit = Unit(cube_rt,"square root", cube_rt_tc, False, False, approx_eq)
+cube_rt_unit = Unit(cube_rt,"cube root", cube_rt_tc, False, False, approx_eq)
 nth_rt_unit = Unit(nth_rt,"nth root", nth_rt_tc, True, False, approx_eq)
 distance_unit = Unit(distance, "distance", distance_tc, True, False, approx_eq)
 abs_val_unit = Unit(abs_val, "absolute value", abs_val_tc, False, False, approx_eq)
@@ -257,8 +259,8 @@ make_change_unit = Unit(make_change, "make change", make_change_tc, False, False
 pt_to_line_unit = Unit(pt_to_line, "distance from point to line", pt_to_line_tc, True, False, approx_eq)
 
 # Unit Test List
-units = [quotient_unit, remainder_unit, circle_area_unit, f_to_c_unit, c_to_f_unit,
-         hg_grade_unit, grade_needed_unit, linear_eq_unit, cube_rt_unit, nth_rt_unit, distance_unit,
+units = [quotient_unit, remainder_unit, circle_area_unit, f_to_c_unit, c_to_f_unit, hg_grade_unit,
+         reference_angle_unit, grade_needed_unit, linear_eq_unit, cube_rt_unit, nth_rt_unit, distance_unit,
          abs_val_unit, digit_chop_unit, alarm_clock_unit, make_change_unit, pt_to_line_unit]
 
 # Create Unit Test
