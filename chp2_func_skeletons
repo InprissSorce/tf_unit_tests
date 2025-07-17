@@ -19,6 +19,9 @@ def hg_grade():
 def grade_needed():
     pass
 
+def reference_angle():
+    pass
+
 def linear_eq():
     pass
 
