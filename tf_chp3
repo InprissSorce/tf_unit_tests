@@ -1,5 +1,5 @@
 # Name: Iteration Unit Test
-# Time: 9.3.2025 @ 11:19 am
+# Time: 9.8.2025 @ 7:41 am
 
 # Helper Functions
 import operator as op
@@ -193,6 +193,7 @@ class UnitTest():
 # and the expected return for that argument.
 sum_squares_tc = [([], 0), ([3], 9), ([3, 33, 333], 111987)]
 square_sum_tc = [([], 0), ([3], 9), ([3, 33, 333], 136161) ]
+largest_tc = [([1, 1, 1], 1), ([1, 3, 2], 3), ([12, 0, 24, 48, 1], 48)]
 factorial_tc = [(0, 1), (1, 1), (2, 2), (12, 479001600)]
 sumtorial_tc = [(0, 0), (1, 1), (2, 3), (12, 78)]
 sum_n_odds_tc = [(0, 0), (1, 1), (2, 4), (144, 20736)]
@@ -215,6 +216,7 @@ tetration_tc = [((2, 4), 65536)]
 # Test types: eq_comp, is_comp, eq_not_is, elems_comp
 sum_squares_unit = Unit(sum_squares, "sum of squares", sum_squares_tc, False, False, eq_comp)
 square_sum_unit = Unit(square_sum, "square of a sum", square_sum_tc, False, False, eq_comp)
+largest_unit = Unit(largest, "largest", largest_tc, False, False, eq_comp)
 factorial_unit = Unit(factorial, "factorial", factorial_tc, False, False, eq_comp)
 sumtorial_unit = Unit(sumtorial, "sumtorial", sumtorial_tc, False, False, eq_comp)
 sum_n_odds_unit = Unit(sum_n_odds, "sum n odds", sum_n_odds_tc, False, False, eq_comp)
@@ -232,7 +234,7 @@ exponentiation_unit = Unit(exponentiation, "exponentiation", exponentiation_tc, 
 tetration_unit = Unit(tetration, "tetration", tetration_tc, True, False, eq_comp)
 
 # Unit Test List
-units = [sum_squares_unit, square_sum_unit, factorial_unit, sumtorial_unit, sum_n_odds_unit, sum_odds_to_n_unit,
+units = [sum_squares_unit, square_sum_unit, largest_unit, factorial_unit, sumtorial_unit, sum_n_odds_unit, sum_odds_to_n_unit,
          fib_unit, trib_unit, harmonic_series_unit, alt_signs_unit, pi_approx_unit, geometric_series_unit,
          iter_iter_unit, addition_unit, multiplication_unit, exponentiation_unit, tetration_unit]
 
