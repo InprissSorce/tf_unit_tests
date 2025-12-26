@@ -1,5 +1,5 @@
 # Name: Dicts and Sets Unit Test
-# Time: 2/28/2023 @ 7:21 am
+# Time: 12/26/2025 @ 3:24 pm
 
 # Helper Functions
 import operator as op
@@ -33,7 +33,7 @@ def elems_comp(a_list, b_list):
         if elem not in b_list:
             return False
     for elem in b_list:
-        if elem not in b_list:
+        if elem not in a_list:
             return False
     return True
 
@@ -264,34 +264,7 @@ reverse_dct_tc = [({}, {}),
                   ({1:2, 2:1}, {1:2, 2:1}),
                   ({1:2, 3:4, 5:6, 7:8}, {2:1, 4:3, 6:5, 8:7})]
 dict_comp_tc = [(L1, {1: 27, 2: 75, 3: 147, 4: 363}), (L2, {2: 20, 4: 44}), (L3, {44: 11}), (L4, {}), (L5, {})]
-apply_perm_tc = [(('', '()'), ''),
-                 (('abc', '()'), 'abc'),
-                 (('abc', '(abc)'), 'bca'),
-                 (('abcdefg', '(ac)(bef)(gd)'), 'ceagfbd')]
-eq_perms_tc = [(('()', '()'), True),
-               (('(a)', '()'), True),
-               (('(a)', '(b)'),True),
-               (('()', '(ab)'), False),
-               (('()', '(ab)(ab)'), True),
-               (('(ab)', '(ba)'), True),
-               (('(abc)', '(acb)'), False),
-               (('(abc)(ca)', '(ca)(abc)'), False),
-               (('(df)(adg)(gadef)(hc)(cia)', '(dg)(fchiae)'), True)]
-inverse_perms_tc = [(('()', '()'), True),
-                    (('(a)', '()'), True),
-                    (('(ab)', '(ab)'), True),
-                    (('(bac)', '(acb)'), False),
-                    (('(adfg)(bac)(iec)', '(dabceigf)'), True),
-                    (('(dagf)(bac)(iec)', '(idfagbce)'), False)]
-cycle_length_tc = [('()', 1),
-                   ('(a)', 1),
-                   ('(ab)', 2),
-                   ('(acbd)', 4),
-                   ('(spam)(and)(egs)', 8)]
-compress_perm_tc = [('()', '()'),
-                    ('(a)', '()'),
-                    ('(ab)', '(ab)'),
-                    ('(bac)(dagbe)(iacdge)', '(beg)(adci)')]
+
 intersect_tc = [((R, S), {33, 34, 97, 68, 38, 74, 76, 79, 80, 53, 58, 27}),
                 ((R, T), {33, 34, 67, 68, 97, 74, 76, 47, 79, 80, 50, 51, 20, 21, 89, 58}),
                 ((set(), R), set()),
@@ -328,16 +301,11 @@ to_morse_unit = Unit(to_morse, 'to_morse', to_morse_tc, False, False, eq_comp)
 subst_cipher_unit = Unit(subst_cipher, 'subst_cipher', subst_cipher_tc, True, False, eq_comp)
 decrypt_unit = Unit(decrypt, 'decrypt', decrypt_tc, True, False, eq_comp)
 next_date_unit = Unit(next_date, 'next date', next_date_tc, True, False, eq_comp)
-number_name_unit = Unit(number_name, 'number_name', number_name_tc, False, False, eq_comp, extra_credit=True)
+number_name_unit = Unit(number_name, 'number_name', number_name_tc, False, False, eq_comp)
 deviation_unit = Unit(deviation, 'deviation', deviation_tc, False, False, eq_comp)
 is_bijective_unit = Unit(is_bijective, 'is_bijective', is_bijective_tc, False, False, eq_comp)
 reverse_dct_unit = Unit(reverse_dct, 'reverse_dct', reverse_dct_tc, False, False, eq_comp)
 dict_comp_unit = Unit(dict_comp, "dict_comp", dict_comp_tc, False, False, eq_comp)
-apply_perms_unit = Unit(apply_perm, 'apply permutation', apply_perm_tc, True, False, eq_comp)
-eq_perms_unit = Unit(eq_perms, 'equivalent permutations', eq_perms_tc, True, False, eq_comp)
-inverse_perms_unit = Unit(inverse_perms, "inverse permutations", inverse_perms_tc, True, False, eq_comp)
-cycle_length_unit = Unit(cycle_length, "cycle length", cycle_length_tc, False, False, eq_comp)
-compress_perm_unit = Unit(compress_perm, "compress permutation", compress_perm_tc, False, False, perm_eq, extra_credit=True)
 intersect_unit = Unit(intersect, 'intersect', intersect_tc, True, False, eq_comp)
 union_unit = Unit(union, 'union', union_tc, True, False, eq_comp)
 diff_unit = Unit(diff, 'difference', diff_tc, True, False, eq_comp)
@@ -347,9 +315,8 @@ power_set_unit = Unit(power_set, 'power_set', power_set_tc, False, False, elems_
 
 # Unit Test List
 units = [letter_count_unit, word_count_unit, to_morse_unit, subst_cipher_unit, decrypt_unit, next_date_unit,
-         number_name_unit, deviation_unit, is_bijective_unit, reverse_dct_unit, dict_comp_unit, apply_perms_unit,
-         eq_perms_unit, inverse_perms_unit, cycle_length_unit, compress_perm_unit, intersect_unit, union_unit,
-         diff_unit, is_subset_unit, proper_subset_unit, power_set_unit]
+         number_name_unit, deviation_unit, is_bijective_unit, reverse_dct_unit, dict_comp_unit, intersect_unit,
+         union_unit, diff_unit, is_subset_unit, proper_subset_unit, power_set_unit]
 
 # Create Unit Test
 unit_test = UnitTest("Dictionaries and Sets Unit Test", units)
