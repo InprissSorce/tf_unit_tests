@@ -1,5 +1,5 @@
 # Name: Recursion Unit Test
-# Time: 2.17.2025 @ 9:39 am
+# Time: 2.23.2026 @ 2:54 pm
 
 # Helper Functions
 import operator as op
@@ -33,7 +33,7 @@ def elems_comp(a_list, b_list):
         if elem not in b_list:
             return False
     for elem in b_list:
-        if elem not in b_list:
+        if elem not in a_list:
             return False
     return True
 
@@ -246,6 +246,16 @@ det_tc = [([[2, -3], [4, 7]], 26),
           ([[1, 2, 3], [2, 4, 6], [-3, -6, -9]], 0),
           ([[4, -7, 9], [13, 1, -6], [-5, 12, 2]], 1717)
          ]
+
+coin_counts_tc = [(([1], 1), 1),
+                  (([1, 2], 10), 6),
+                  (([3], 10), 0),
+                  (([1, 3], 10), 4),
+                  (([1, 6, 18, 24], 144), 319),
+                  (([1, 6, 18, 24], 1728), 347545),
+                  (([4, 6, 20, 24], 1728), 157213)
+                   ]
+
 qsort_tc = [([1], [1]),
             ([3, 1, 2, 5, 0, 4], [0, 1, 2, 3, 4, 5]),
             ([-1205, 1209, -1105, -1345, 1365, 1623, 736, -430, -1275], [-1345, -1275, -1205, -1105, -430, 736, 1209, 1365, 1623]),
@@ -256,12 +266,49 @@ bchop_tc = [(([1], 1), True),
             (([-125, 33, -126, 66, -66, 136, 30, -21, 26, -49, 114, 16, -31, 16, 139, 63, -136, -142, 127, -23, -32, 117, 15, 85], -66), True),
             (([-125, 33, -126, 66, -66, 136, 30, -21, 26, -49, 114, 16, -31, 16, 139, 63, -136, -142, 127, -23, -32, 117, 15, 85], 12), False)
             ]
+
 L = []
 I = [3, 1, 2, 5, 0, 4]
 Iq = [0, 1, 2, 3, 4, 5]  # I sorted
 S = [-1205, 1209, -1105, -1345, 1365, 1623, 736, -430, -1275]
 Sq = [-1345, -1275, -1205, -1105, -430, 736, 1209, 1365, 1623]  # S sorted
 mqsort_tc = [(L, L), (I, Iq), (S, Sq)]
+
+permutations_tc = [([], []),
+                   ([2], [[2]]),
+                   ([2, 3, 5], [[2, 3, 5], [2, 5, 3], [3, 2, 5], [3, 5, 2], [5, 2, 3], [5, 3, 2]]),
+                   ([2, 3, 5, 7, 11], [[2, 3, 5, 7, 11], [2, 3, 5, 11, 7], [2, 3, 7, 5, 11],
+                    [2, 3, 7, 11, 5], [2, 3, 11, 5, 7], [2, 3, 11, 7, 5], [2, 5, 3, 7, 11],
+                    [2, 5, 3, 11, 7], [2, 5, 7, 3, 11], [2, 5, 7, 11, 3], [2, 5, 11, 3, 7],
+                    [2, 5, 11, 7, 3], [2, 7, 3, 5, 11], [2, 7, 3, 11, 5], [2, 7, 5, 3, 11],
+                    [2, 7, 5, 11, 3], [2, 7, 11, 3, 5], [2, 7, 11, 5, 3], [2, 11, 3, 5, 7],
+                    [2, 11, 3, 7, 5], [2, 11, 5, 3, 7], [2, 11, 5, 7, 3], [2, 11, 7, 3, 5],
+                    [2, 11, 7, 5, 3], [3, 2, 5, 7, 11], [3, 2, 5, 11, 7], [3, 2, 7, 5, 11],
+                    [3, 2, 7, 11, 5], [3, 2, 11, 5, 7], [3, 2, 11, 7, 5], [3, 5, 2, 7, 11],
+                    [3, 5, 2, 11, 7], [3, 5, 7, 2, 11], [3, 5, 7, 11, 2], [3, 5, 11, 2, 7],
+                    [3, 5, 11, 7, 2], [3, 7, 2, 5, 11], [3, 7, 2, 11, 5], [3, 7, 5, 2, 11],
+                    [3, 7, 5, 11, 2], [3, 7, 11, 2, 5], [3, 7, 11, 5, 2], [3, 11, 2, 5, 7],
+                    [3, 11, 2, 7, 5], [3, 11, 5, 2, 7], [3, 11, 5, 7, 2], [3, 11, 7, 2, 5],
+                    [3, 11, 7, 5, 2], [5, 2, 3, 7, 11], [5, 2, 3, 11, 7], [5, 2, 7, 3, 11],
+                    [5, 2, 7, 11, 3], [5, 2, 11, 3, 7], [5, 2, 11, 7, 3], [5, 3, 2, 7, 11],
+                    [5, 3, 2, 11, 7], [5, 3, 7, 2, 11], [5, 3, 7, 11, 2], [5, 3, 11, 2, 7],
+                    [5, 3, 11, 7, 2], [5, 7, 2, 3, 11], [5, 7, 2, 11, 3], [5, 7, 3, 2, 11],
+                    [5, 7, 3, 11, 2], [5, 7, 11, 2, 3], [5, 7, 11, 3, 2], [5, 11, 2, 3, 7],
+                    [5, 11, 2, 7, 3], [5, 11, 3, 2, 7], [5, 11, 3, 7, 2], [5, 11, 7, 2, 3],
+                    [5, 11, 7, 3, 2], [7, 2, 3, 5, 11], [7, 2, 3, 11, 5], [7, 2, 5, 3, 11],
+                    [7, 2, 5, 11, 3], [7, 2, 11, 3, 5], [7, 2, 11, 5, 3], [7, 3, 2, 5, 11],
+                    [7, 3, 2, 11, 5], [7, 3, 5, 2, 11], [7, 3, 5, 11, 2], [7, 3, 11, 2, 5],
+                    [7, 3, 11, 5, 2], [7, 5, 2, 3, 11], [7, 5, 2, 11, 3], [7, 5, 3, 2, 11],
+                    [7, 5, 3, 11, 2], [7, 5, 11, 2, 3], [7, 5, 11, 3, 2], [7, 11, 2, 3, 5],
+                    [7, 11, 2, 5, 3], [7, 11, 3, 2, 5], [7, 11, 3, 5, 2], [7, 11, 5, 2, 3],
+                    [7, 11, 5, 3, 2], [11, 2, 3, 5, 7], [11, 2, 3, 7, 5], [11, 2, 5, 3, 7],
+                    [11, 2, 5, 7, 3], [11, 2, 7, 3, 5], [11, 2, 7, 5, 3], [11, 3, 2, 5, 7],
+                    [11, 3, 2, 7, 5], [11, 3, 5, 2, 7], [11, 3, 5, 7, 2], [11, 3, 7, 2, 5],
+                    [11, 3, 7, 5, 2], [11, 5, 2, 3, 7], [11, 5, 2, 7, 3], [11, 5, 3, 2, 7],
+                    [11, 5, 3, 7, 2], [11, 5, 7, 2, 3], [11, 5, 7, 3, 2], [11, 7, 2, 3, 5],
+                    [11, 7, 2, 5, 3], [11, 7, 3, 2, 5], [11, 7, 3, 5, 2], [11, 7, 5, 2, 3],
+                    [11, 7, 5, 3, 2]])
+                   ]
 
 # Create Units
 # This block will cause a crash if you haven't created all of the required functions.
@@ -280,14 +327,16 @@ pt_row_unit = Unit(pt_row, "pt_row", pt_row_tc, False, False, eq_comp)
 prime_factorization_unit = Unit(prime_factorization, "prime_factorization", prime_factorization_tc, False, False, eq_comp)
 bracket_purge_unit = Unit(bracket_purge, "bracket_purge", bracket_purge_tc, False,  False, eq_comp)
 det_unit = Unit(det, "determinant", det_tc, False, False, eq_comp)
+coin_counts_unit = Unit(coin_counts, "coin counts", coin_counts_tc, True, False, eq_comp)
 qsort_unit = Unit(qsort, "qsort", qsort_tc, False, False, eq_comp)
 bchop_unit = Unit(bchop, "bchop", bchop_tc, True, False, eq_comp)
 mqsort_unit = Unit(mqsort, "mqsort", mqsort_tc, False, True, eq_comp)
+permutations_unit = Unit(permutations, "permutations", permutations_tc, False, False, elems_comp, True)
 
 # Unit Test List
 units = [sum_of_unit, product_of_unit, find_min_unit, find_max_unit, reverse_unit, tri_num_unit,
          fib_unit, fast_fib_unit, gcf_unit, pt_row_unit, prime_factorization_unit, bracket_purge_unit,
-         det_unit, qsort_unit, bchop_unit, mqsort_unit]
+         det_unit, coin_counts_unit, qsort_unit, bchop_unit, mqsort_unit, permutations_unit]
 
 # Create Unit Test
 recursion_unit_test = UnitTest("Recursion Unit Test Final", units)
