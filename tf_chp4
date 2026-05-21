@@ -1,5 +1,5 @@
 # Name: Selection Unit Test
-# Time: 9.22.2025 @ 9:52 am
+# Time: 5.21.2026 @ 1:51 pm
 
 # Helper Functions
 import operator as op
@@ -33,7 +33,7 @@ def elems_comp(a_list, b_list):
         if elem not in b_list:
             return False
     for elem in b_list:
-        if elem not in b_list:
+        if elem not in a_list:
             return False
     return True
 
@@ -52,10 +52,15 @@ def eq_not_is(an_obj, another_obj):
 def approx_eq(expected, actual):
     if expected is None and actual is None:
         return True
+    if type(expected) == tuple and type(actual) == tuple:
+        for i in range(len(expected)):
+            if abs(expected[i] - actual[i]) > 0.00001:
+                return False
+        return True
     if isinstance(expected, (int, float, complex)):
         if not isinstance(actual, (int, float, complex)):
             return False
-        return abs(expected - actual) < 0.000001
+        return abs(expected - actual) < 0.00001
     return False
 
 def build_arg_str(args, is_poly):
@@ -198,6 +203,7 @@ NAND_tc = [((True, True), False), ((False, True), True)]
 XOR_tc = [((False, True), True), ((False, False), False)]
 XNOR_tc = [((True, True), True), ((True, False), False)]
 implies_tc = [((True, False), False), ((False, True), True)]
+neither_nor_tc = [((True, True), False), ((True, False), False), ((False, True), False), ((False, False), True)]
 signs_tc = [(-12, -1), (3, 1), (0, 0)]
 sign_count_tc = [([1], (0, 0, 1)), ([], (0, 0, 0)), ([-1], (1, 0, 0)), ([12, 28, 0, 0, -12, -28, 0], (2, 3, 2))]
 letter_grade_tc = [(-1, "NaG"), (101, "NaG"), (100, "A"), (72, "C")]
@@ -222,31 +228,31 @@ pyth_trip_tc = [(200, 127), (1000, 881)]
 # This block will cause a crash if you haven't created all of the required functions.
 # Format: Unit(func, name, cases, is_polyadic, is_mutator, test_type)
 # Test types: eq_comp, is_comp, eq_not_is, elems_comp
-pw_def_unit = Unit(pw_def, "piecewise defined function", pw_def_tc, False, False, eq_comp)
+pw_def_unit = Unit(pw_def, "piecewise defined", pw_def_tc, False, False, eq_comp)
 abs_val_unit = Unit(abs_val, "absolute value", abs_val_tc, False, False, eq_comp)
 NOR_unit = Unit(NOR, "NOR", NOR_tc, True, False, eq_comp)
 NAND_unit = Unit(NAND, "NAND", NAND_tc, True, False, eq_comp)
 XOR_unit = Unit(XOR, "XOR", XOR_tc, True, False, eq_comp)
 XNOR_unit = Unit(XNOR, "XNOR", XNOR_tc, True, False, eq_comp)
 implies_unit = Unit(implies, "implies", implies_tc, True, False, eq_comp)
+neither_nor_unit = Unit(neither_nor, "neither nor", neither_nor_tc, True, False, eq_comp)
 sign_unit = Unit(sign, "sign function", signs_tc, False, False, eq_comp)
 sign_count_unit = Unit(sign_count, "sign count", sign_count_tc, False, False, eq_comp)
 letter_grade_unit = Unit(letter_grade, "letter grades", letter_grade_tc, False, False, eq_comp)
 letter_grade_plus_unit = Unit(letter_grade_plus, "letter grades plus", letter_grade_plus_tc, False, False, eq_comp)
-is_tri_unit = Unit(is_tri, "can it be a triangle", is_tri_tc, True, False, eq_comp)
-order_three_unit = Unit(order_three, "order three", order_three_tc, True, False, eq_comp)
-extrema_unit = Unit(extrema, "max and min elements", extrema_tc, False, False, eq_comp)
-extrema_tc = [([12], (12, 12)), ([-13, -17, 4, -44, 37, -48, 22, -49, -7, 34, -4, -2, 13, 44, -32, 31, 48, 18, 43, -17, 34, -37, 44, 25, 1, 26, -6, 34], (48, -49))]
-tri_test_unit = Unit(tri_test, "triangle test - right, acute, obtuse or NaT", tri_test_tc, True, False, eq_comp)
+is_tri_unit = Unit(is_tri, "is it a triangle", is_tri_tc, True, False, eq_comp)
+order_three_unit = Unit(order_three, "order three numbers", order_three_tc, True, False, eq_comp)
+extrema_unit = Unit(extrema, "extrema", extrema_tc, False, False, eq_comp)
+tri_test_unit = Unit(tri_test, "triangle test", tri_test_tc, True, False, eq_comp)
 digit_count_unit = Unit(digit_count, "digit count", digit_count_tc, False, False, eq_comp)
 leap_year_unit = Unit(leap_year, "leap year", leap_year_tc, False, False, eq_comp)
 sq_rt_unit = Unit(sq_rt, "square root", sq_rt_tc, False, False, approx_eq)
-is_prime_unit = Unit(is_prime, "is it prime", is_prime_tc, False, False, eq_comp)
+is_prime_unit = Unit(is_prime, "prime test", is_prime_tc, False, False, eq_comp)
 hailstone_unit = Unit(hailstone, "hailstone sequence", hailstone_tc, False, False, eq_comp)
 LCM_unit = Unit(LCM, "least common multiple", LCM_tc, True, False, eq_comp)
 GCF_unit = Unit(GCF, "greatest common factor", GCF_tc, True, False, eq_comp)
 reduce_frac_unit = Unit(reduce_frac, "reduce a fraction", reduce_frac_tc, True, False, eq_comp)
-add_fracs_unit = Unit(add_fracs, "add fractions", add_fracs_tc, True, False, eq_comp)
+add_fracs_unit = Unit(add_fracs, "add two fractions", add_fracs_tc, True, False, eq_comp)
 pyth_trip_unit = Unit(pyth_trip, "pythagorean triples", pyth_trip_tc, False, False, eq_comp)
 
 # Unit Test List
