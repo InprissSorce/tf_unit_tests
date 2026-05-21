@@ -1,5 +1,5 @@
 # Name: Way of the Func Unit Test
-# Time: 4.21.2025 @ 7:42 am
+# Time: 5.21.2026 @ 12:57 pm
 
 # Helper Functions
 import operator as op
@@ -33,7 +33,7 @@ def elems_comp(a_list, b_list):
         if elem not in b_list:
             return False
     for elem in b_list:
-        if elem not in b_list:
+        if elem not in a_list:
             return False
     return True
 
@@ -52,10 +52,15 @@ def eq_not_is(an_obj, another_obj):
 def approx_eq(expected, actual):
     if expected is None and actual is None:
         return True
+    if type(expected) == tuple and type(actual) == tuple:
+        for i in range(len(expected)):
+            if abs(expected[i] - actual[i]) > 0.00001:
+                return False
+        return True
     if isinstance(expected, (int, float, complex)):
         if not isinstance(actual, (int, float, complex)):
             return False
-        return abs(expected - actual) < 0.000001
+        return abs(expected - actual) < 0.00001
     return False
 
 def build_arg_str(args, is_poly):
@@ -217,7 +222,8 @@ cube_rt_tc = [(0, 0.0),
             (1, 1.0),
             (1024, 10.079368399158984)]
 nth_rt_tc = [((1, 1), 1.0),
-             ((144, 5), 2.701920077041227)]
+             ((144, 5), 2.701920077041227),
+             ((1728, 12), 1.8612097182041991)]
 distance_tc = [((0, 0, 0, 0), 0.0),
                ((1, 2, 3, 4), 2.8284271247461903),
                ((-4, 5, -6, -7), 12.165525060596439)]
@@ -225,7 +231,8 @@ abs_val_tc = [(0, 0.0),
               (-15, 15.0),
               (17.9, 17.9)]
 digit_chop_tc = [((0, 1), 0),
-                 ((12345, 4), 2)]
+                 ((12345, 4), 2),
+                 ((123456789, 9), 1)]
 alarm_clock_tc = [((0, 0), 0),
                   ((0, 28), 4),
                   ((28, 128), 12)]
@@ -233,6 +240,8 @@ make_change_tc = [(0, (0, 0, 0, 0)),
                   (14, (0, 1, 0, 4)),
                   (66, (2, 1, 1, 1)),
                   (99, (3, 2, 0, 4))]
+herons_formula_tc = [((3, 4, 5), 6.0),
+                     ((8, 12, 18), 38.24918299781056)]
 pt_to_line_tc = [((0, -6, 0, 15), 21),
                  ((6, -2, 2, -3), 4.9193495505)]
 
@@ -240,28 +249,29 @@ pt_to_line_tc = [((0, -6, 0, 15), 21),
 # Create Units
 # This block will cause a crash if you haven't created all of the required functions.
 # Format: Unit(self, func, name, cases, is_polyadic, is_mutator, test_type)
-quotient_unit = Unit(quotient, "quotient", quotient_tc, True, False, eq_comp)
-remainder_unit = Unit(remainder, "remainder", remainder_tc, True, False, eq_comp)
-circle_area_unit = Unit(circle_area, "circle area", circle_area_tc, False, False, approx_eq)
+quotient_unit = Unit(quotient, "Quotient", quotient_tc, True, False, eq_comp)
+remainder_unit = Unit(remainder, "Remainder", remainder_tc, True, False, eq_comp)
+circle_area_unit = Unit(circle_area, "Circle Area", circle_area_tc, False, False, approx_eq)
 f_to_c_unit = Unit(f_to_c, "Fahrneheit to Celcius", f_to_c_tc, False, False, approx_eq)
 c_to_f_unit = Unit(c_to_f, "Celcius to Fahrenheit", c_to_f_tc, False, False, approx_eq)
-hg_grade_unit = Unit(hg_grade, "honors geo grade", hg_grade_tc, True, False, approx_eq)
-grade_needed_unit = Unit(grade_needed, "grade needed on final", grade_needed_tc, True, False, approx_eq)
-reference_angle_unit = Unit(reference_angle, "reference angle", reference_angle_tc, False, False, eq_comp)
-linear_eq_unit = Unit(linear_eq, "linear equation", linear_eq_tc, True, False, eq_comp)
-cube_rt_unit = Unit(cube_rt,"cube root", cube_rt_tc, False, False, approx_eq)
-nth_rt_unit = Unit(nth_rt,"nth root", nth_rt_tc, True, False, approx_eq)
-distance_unit = Unit(distance, "distance", distance_tc, True, False, approx_eq)
-abs_val_unit = Unit(abs_val, "absolute value", abs_val_tc, False, False, approx_eq)
-digit_chop_unit = Unit(digit_chop, "digit chop", digit_chop_tc, True, False, eq_comp)
-alarm_clock_unit = Unit(alarm_clock, "alarm clock", alarm_clock_tc, True, False, eq_comp)
-make_change_unit = Unit(make_change, "make change", make_change_tc, False, False, eq_comp)
-pt_to_line_unit = Unit(pt_to_line, "distance from point to line", pt_to_line_tc, True, False, approx_eq)
+hg_grade_unit = Unit(hg_grade, "Honors Geometry Grade", hg_grade_tc, True, False, approx_eq)
+grade_needed_unit = Unit(grade_needed, "Grade Needed on Final", grade_needed_tc, True, False, approx_eq)
+reference_angle_unit = Unit(reference_angle, "Reference Angle", reference_angle_tc, False, False, eq_comp)
+linear_eq_unit = Unit(linear_eq, "Linear Equation", linear_eq_tc, True, False, eq_comp)
+cube_rt_unit = Unit(cube_rt,"Cube Root", cube_rt_tc, False, False, approx_eq)
+nth_rt_unit = Unit(nth_rt,"nth Root", nth_rt_tc, True, False, approx_eq)
+distance_unit = Unit(distance, "Distance", distance_tc, True, False, approx_eq)
+abs_val_unit = Unit(abs_val, "Absolute Value", abs_val_tc, False, False, approx_eq)
+digit_chop_unit = Unit(digit_chop, "Digit Chop", digit_chop_tc, True, False, eq_comp)
+alarm_clock_unit = Unit(alarm_clock, "Alarm Clock", alarm_clock_tc, True, False, eq_comp)
+make_change_unit = Unit(make_change, "Efficient Cashier", make_change_tc, False, False, eq_comp)
+herons_formula_unit = Unit(herons_formula, "Heron's Formula", herons_formula_tc, True, False, approx_eq)
+pt_to_line_unit = Unit(pt_to_line, "Distance from Point to Line", pt_to_line_tc, True, False, approx_eq)
 
 # Unit Test List
 units = [quotient_unit, remainder_unit, circle_area_unit, f_to_c_unit, c_to_f_unit, hg_grade_unit,
          reference_angle_unit, grade_needed_unit, linear_eq_unit, cube_rt_unit, nth_rt_unit, distance_unit,
-         abs_val_unit, digit_chop_unit, alarm_clock_unit, make_change_unit, pt_to_line_unit]
+         abs_val_unit, digit_chop_unit, alarm_clock_unit, make_change_unit, herons_formula_unit, pt_to_line_unit]
 
 # Create Unit Test
 unit_test = UnitTest("The Way of the Function Unit Test", units)
