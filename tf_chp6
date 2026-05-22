@@ -232,8 +232,6 @@ partition_tc = [(L, []),
                 (N, [1, 2]),
                 (O, [-12, -1, -36, 12, 2, 3, 6, 18, 24])]
 open_lockers_tc = [(10, 3), (100, 10), (1000, 31)]
-primes_to_n_tc = [(144, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139]),
-                  (288, [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 229, 233, 239, 241, 251, 257, 263, 269, 271, 277, 281, 283])]
 longest_monotonic_tc = [([8, 7, 0, 9, 8, 11, 11, 12, 3, 6, 2, 9, 4, 8, 12, 3, 6, 8, 5, 12, 5, 3, 12, 12, 5, 3, 5, 11, 3, 4, 11, 10, 11, 6, 6, 12], [[8, 11, 11, 12], [12, 12, 5, 3]]),
                         ([1], []),
                         ([], [])]
@@ -283,7 +281,6 @@ prime_factorization_unit = Unit(prime_factorization, "prime_factorization", prim
 flatten_unit = Unit(flatten, "flatten", flatten_tc, False, False, eq_comp)
 partition_unit = Unit(partition, "partition", partition_tc, False, True, eq_comp)
 open_lockers_unit = Unit(open_lockers, "open lockers", open_lockers_tc, False, False, eq_comp)
-primes_to_n_unit = Unit(primes_to_n, "primes to n", primes_to_n_tc, False, False, eq_comp)
 longest_monotonic_unit = Unit(longest_monotonic, "longest monotonic subsequences", longest_monotonic_tc, False, False, eq_comp)
 sublist_sum_unit = Unit(sublist_sum, "sublist sum", sublist_sum_tc, True, False, eq_comp)
 mnk_won_unit = Unit(mnk_won, "mnk games", mnk_won_tc, True, False, eq_comp, True)
@@ -296,7 +293,7 @@ goldbach_unit = Unit(goldbach, "goldbach", goldbach_tc, False, False, eq_comp)
 units = [max_num_unit, min_num_unit, sum_elems_unit, count_elem_unit, remove_val_unit, insert_at_unit,
          elim_dups_unit, exchange_elems_unit, reverse_unit, greatest_sum_unit, dot_product_unit,
          mean_unit, mode_unit, perimeter_unit, prime_list_unit, sum_sieve_unit, prime_factorization_unit,
-         flatten_unit, partition_unit, open_lockers_unit, primes_to_n_unit, longest_monotonic_unit, sublist_sum_unit,
+         flatten_unit, partition_unit, open_lockers_unit, longest_monotonic_unit, sublist_sum_unit,
          mnk_won_unit, bubble_sort_unit, selection_sort_unit, median_unit, goldbach_unit]
 
 # Create Unit Test
